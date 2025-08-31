@@ -1,0 +1,208 @@
+# CODEOWNERS - Cross-team ownership and review requirements
+# This file defines who is responsible for reviewing changes to different parts of the codebase
+
+# Global repository owners (always required for major changes)
+* @enterprise-architects @security-team @compliance-team
+
+# Core application and API endpoints
+/app/main.py @api-team @security-team
+/app/models/ @data-team @api-team
+/app/services/ @api-team @backend-team
+
+# Governance and compliance (critical path)
+/app/models/governance.py @compliance-team @security-team @legal-team
+/app/config/settings.py @platform-team @security-team @compliance-team
+/app/middleware/governance_middleware.py @platform-team @security-team
+
+# Shared models and cross-team functionality
+/app/models/shared.py @data-team @api-team @platform-team
+/app/services/shared_service.py @platform-team @api-team
+/app/services/governance_service.py @compliance-team @platform-team
+
+# Authentication and access control
+/app/auth/ @security-team @platform-team
+/app/middleware/ @platform-team @security-team
+
+# Database and data management
+/app/database.py @data-team @platform-team
+/app/models/database/ @data-team @platform-team
+
+# Testing and quality assurance
+/tests/ @qa-team @api-team
+/tests/governance/ @compliance-team @qa-team
+/tests/shared/ @platform-team @qa-team
+
+# Configuration and deployment
+/app/config/ @platform-team @devops-team
+/deployment/ @devops-team @platform-team
+/kubernetes/ @devops-team @platform-team
+
+# Documentation and governance
+/docs/ @technical-writers @compliance-team
+/docs/governance/ @compliance-team @legal-team
+/docs/api/ @api-team @technical-writers
+
+# Frontend and user interface
+/frontend/ @frontend-team @ux-team
+/frontend/components/ @frontend-team @design-system-team
+/frontend/pages/ @frontend-team @product-team
+
+# Infrastructure and monitoring
+/infrastructure/ @devops-team @platform-team
+/monitoring/ @devops-team @platform-team
+/alerting/ @devops-team @platform-team
+
+# Security and compliance
+/security/ @security-team @compliance-team
+/compliance/ @compliance-team @legal-team
+/audit/ @compliance-team @security-team
+
+# Team-specific configurations
+/teams/api/ @api-team
+/teams/data/ @data-team
+/teams/platform/ @platform-team
+/teams/security/ @security-team
+/teams/compliance/ @compliance-team
+
+# Cross-cutting concerns (require multiple team reviews)
+*.governance.* @compliance-team @security-team @platform-team
+*.security.* @security-team @compliance-team
+*.compliance.* @compliance-team @legal-team
+*.shared.* @platform-team @api-team @data-team
+
+# Critical files that always require security review
+**/auth.py @security-team
+**/middleware.py @security-team
+**/config.py @security-team
+**/database.py @security-team
+
+# Model and AI-related changes
+**/models/ @data-team @ai-team @security-team
+**/ai/ @ai-team @security-team @compliance-team
+**/ml/ @ai-team @security-team @compliance-team
+
+# Cost and usage tracking
+**/cost/ @finance-team @platform-team
+**/usage/ @platform-team @finance-team
+**/billing/ @finance-team @platform-team
+
+# Performance and scalability
+**/performance/ @platform-team @devops-team
+**/scaling/ @platform-team @devops-team
+**/load-testing/ @platform-team @qa-team
+
+# Integration and external services
+**/integrations/ @platform-team @api-team
+**/external/ @platform-team @security-team
+**/webhooks/ @platform-team @security-team
+
+# Data processing and analytics
+**/analytics/ @data-team @platform-team
+**/reporting/ @data-team @compliance-team
+**/metrics/ @platform-team @data-team
+
+# Emergency and hotfix changes
+**/hotfix/ @platform-team @security-team @compliance-team
+**/emergency/ @platform-team @security-team @compliance-team
+
+# Documentation updates
+**/README.md @technical-writers @platform-team
+**/CHANGELOG.md @technical-writers @platform-team
+**/API.md @api-team @technical-writers
+
+# Dependencies and package management
+**/requirements.txt @platform-team @security-team
+**/package.json @platform-team @security-team
+**/Dockerfile @devops-team @platform-team
+
+# Environment and configuration files
+**/.env* @platform-team @security-team
+**/config/ @platform-team @security-team
+**/secrets/ @security-team @platform-team
+
+# CI/CD and automation
+**/.github/ @devops-team @platform-team
+**/.gitlab-ci.yml @devops-team @platform-team
+**/Jenkinsfile @devops-team @platform-team
+
+# Special review requirements for governance changes
+# These require approval from compliance team before merging
+**/governance/** @compliance-team @legal-team @security-team
+**/compliance/** @compliance-team @legal-team @security-team
+**/audit/** @compliance-team @security-team
+
+# Cross-team collaboration files
+**/shared/** @platform-team @api-team @data-team
+**/common/** @platform-team @api-team @data-team
+**/utils/** @platform-team @api-team
+
+# Team-specific review requirements
+# API team must review all endpoint changes
+**/endpoints/** @api-team
+**/routes/** @api-team
+**/controllers/** @api-team
+
+# Data team must review all data model changes
+**/models/** @data-team
+**/schemas/** @data-team
+**/entities/** @data-team
+
+# Platform team must review all infrastructure changes
+**/infrastructure/** @platform-team
+**/deployment/** @platform-team
+**/configuration/** @platform-team
+
+# Security team must review all security-related changes
+**/security/** @security-team
+**/authentication/** @security-team
+**/authorization/** @security-team
+
+# Compliance team must review all compliance-related changes
+**/compliance/** @compliance-team
+**/governance/** @compliance-team
+**/audit/** @compliance-team
+
+# DevOps team must review all deployment changes
+**/deployment/** @devops-team
+**/kubernetes/** @devops-team
+**/docker/** @devops-team
+
+# Finance team must review all cost-related changes
+**/cost/** @finance-team
+**/billing/** @finance-team
+**/budget/** @finance-team
+
+# Legal team must review all compliance and governance changes
+**/legal/** @legal-team
+**/compliance/** @legal-team
+**/governance/** @legal-team
+
+# Technical writers must review all documentation changes
+**/docs/** @technical-writers
+**/README.md @technical-writers
+**/CHANGELOG.md @technical-writers
+
+# UX team must review all frontend changes
+**/frontend/** @ux-team
+**/components/** @ux-team
+**/design/** @ux-team
+
+# Product team must review all feature changes
+**/features/** @product-team
+**/pages/** @product-team
+**/workflows/** @product-team
+
+# QA team must review all test changes
+**/tests/** @qa-team
+**/test/** @qa-team
+**/spec/** @qa-team
+
+# AI team must review all AI/ML changes
+**/ai/** @ai-team
+**/ml/** @ai-team
+**/models/** @ai-team
+
+# Design system team must review all component changes
+**/components/** @design-system-team
+**/design-system/** @design-system-team
+**/ui/** @design-system-team
